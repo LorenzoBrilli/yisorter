@@ -1,3 +1,10 @@
+"""
+    yisorter
+    sort utility from files coming from yi camera
+    
+    author: Lorenzo Brilli
+"""
+
 from os import listdir, getcwd, remove
 from os.path import isfile, join
 
@@ -9,9 +16,6 @@ photos = [f for f in files if ('.jpg' in f.lower())]
 videos = [f for f in files if ('.mp4' in f.lower())]
 thms = [f for f in files if ('.thm' in f.lower())]
 secs = [f for f in files if ('.secs' in f.lower())]
-
-
-print(thms)
 
 #remove all thms and secs
 for f in thms:
