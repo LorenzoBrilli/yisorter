@@ -15,7 +15,7 @@ files = [f for f in listdir(getcwd()) if isfile(join(getcwd(), f))]
 photos = [f for f in files if (('.jpg' in f.lower()) or ('.dng' in f.lower()))]
 videos = [f for f in files if ('.mp4' in f.lower())]
 thms = [f for f in files if ('.thm' in f.lower())]
-secs = [f for f in files if ('.secs' in f.lower())]
+secs = [f for f in files if ('.sec' in f.lower())]
 
 #sort modalities
 p_photos = [f for f in photos if (f.lower()[:4]=='ydxj')]
@@ -44,29 +44,33 @@ if (len(videos)>0):
 for f in p_photos:
     rename(f,('photos/photo_'+f[4:]).lower())
 for f in p_bursts:
-    rename(f,('photos/burst_'+f[1:4]+'_'f[4:]).lower())
+    rename(f,('photos/burst_'+f[1:4]+'_'+f[4:]).lower())
 for f in p_timelapses:
-    rename(f,('photos/timelapse_'+f[1:4]+'_'f[4:]).lower())
+    rename(f,('photos/timelapse_'+f[1:4]+'_'+f[4:]).lower())
 for f in p_photofromvideos:
-    rename(f,('photos/photofromvideo_'+f[1:4]+'_'f[4:]).lower())
+    rename(f,('photos/photofromvideo_'+f[1:4]+'_'+f[4:]).lower())
 for f in v_videos:
+    dest = f
     if (f[2:4].lower() == 'xj'):
-        f = f[:2] + '00' + f[4:]
-    rename(f,('videos/video_'+f[4:8]+'_'+f[2:4]+f[8:]).lower())
+        dest = f[:2] + '00' + f[4:]
+    rename(f,('videos/video_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
 for f in v_timelapses:
+    dest = f
     if (f[2:4].lower() == 'tl'):
-        f = f[:2] + '00' + f[4:]
-    rename(f,('videos/timelapse_'+f[4:8]+'_'+f[2:4]+f[8:]).lower())
+        dest = f[:2] + '00' + f[4:]
+    rename(f,('videos/timelapse_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
 for f in v_loop:
     rename(f,('videos/loop_'+f[4:8]+'_'+f[1:4]+f[8:]).lower())
 for f in v_videoandphotos:
+    dest = f
     if (f[2:4].lower() == 'xj'):
-        f = f[:2] + '00' + f[4:]
-    rename(f,('videos/videowphotos_'+f[4:8]+'_'+f[2:4]+f[8:]).lower())
+        dest = f[:2] + '00' + f[4:]
+    rename(f,('videos/videowphotos_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
 for f in v_slowmotion:
+    dest = f
     if (f[2:4].lower() == 'xj'):
-        f = f[:2] + '00' + f[4:]
-    rename(f,('videos/slowmotion_'+f[4:8]+'_'+f[2:4]+f[8:]).lower())
+        dest = f[:2] + '00' + f[4:]
+    rename(f,('videos/slowmotion_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
 
 
 #remove all thms and secs
