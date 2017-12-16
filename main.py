@@ -5,7 +5,7 @@
     author: Lorenzo Brilli
 """
 
-from os import listdir, getcwd, remove, mkdir
+from os import listdir, getcwd, remove, mkdir, rename
 from os.path import isfile, join
 
 #get files in directory
@@ -17,12 +17,6 @@ videos = [f for f in files if ('.mp4' in f.lower())]
 thms = [f for f in files if ('.thm' in f.lower())]
 secs = [f for f in files if ('.secs' in f.lower())]
 
-#create photo and video directories
-if (len(photos)>0):
-    mkdir('photos')
-if (len(videos)>0):
-    mkdir('videos')
-
 #sort modalities
 p_photos = [f for f in photos if (f.lower()[:4]=='ydxj')]
 p_bursts = [f for f in photos if (f.lower()[:1]=='c')]
@@ -32,6 +26,20 @@ v_videos = [f for f in videos if ((f.lower()[:4]=='ydxj') or (f.lower()[:2]=='yn
 v_timelapses = [f for f in videos if ((f.lower()[:4]=='ydtl') or (f.lower()[:2]=='yt'))]
 v_slowmotion = [f for f in videos if ((f.lower()[:2]=='ys'))]
 
+#create photo and video directories
+if (len(photos)>0):
+    try:
+        mkdir('photos')
+    except:
+        pass
+if (len(videos)>0):
+    try:
+        mkdir('videos')
+    except:
+        pass
+
+#sort
+rename('a.jpg','YDXJ0001.JPG')
 
 #remove all thms and secs
 for f in thms:
