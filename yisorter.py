@@ -8,7 +8,7 @@
 from os import listdir, getcwd, remove, mkdir, rename
 from os.path import isfile, join
 
-print('yisorter: a utility for sorting in a more human level yi action camera videos and photo\n\nAuthor: Lorenzo Brilli\n\n\n')
+print('\nyisorter: a utility for sorting in a more human level yi action camera videos and photo\n\nAuthor: Lorenzo Brilli\n\n\n')
 
 #get files in directory
 print('Getting Files...')
