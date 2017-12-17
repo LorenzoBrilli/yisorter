@@ -2,3 +2,4 @@ yisorter.spec
 dist/
 build
 __pycache__
+.gitignore
