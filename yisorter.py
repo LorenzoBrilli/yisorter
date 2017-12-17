@@ -8,7 +8,10 @@
 from os import listdir, getcwd, remove, mkdir, rename
 from os.path import isfile, join
 
+print('yisorter: a utility for sorting in a more human level yi action camera videos and photo\n\nAuthor: Lorenzo Brilli\n\n\n')
+
 #get files in directory
+print('Getting Files...')
 files = [f for f in listdir(getcwd()) if isfile(join(getcwd(), f))]
 
 #get all interested file in different lists
@@ -29,6 +32,7 @@ v_videoandphotos = [f for f in videos if (f.lower()[:2]=='yp')]
 v_slowmotion = [f for f in videos if ((f.lower()[:2]=='ys'))]
 
 #create photo and video directories
+print('Creating Directories...')
 if (len(photos)>0):
     try:
         mkdir('photos')
@@ -42,39 +46,61 @@ if (len(videos)>0):
 
 #sort files
 for f in p_photos:
-    rename(f,('photos/photo_'+f[4:]).lower())
+    dest = ('photos/photo_'+f[4:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in p_bursts:
-    rename(f,('photos/burst_'+f[1:4]+'_'+f[4:]).lower())
+    dest = ('photos/burst_'+f[1:4]+'_'+f[4:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in p_timelapses:
-    rename(f,('photos/timelapse_'+f[1:4]+'_'+f[4:]).lower())
+    dest = ('photos/timelapse_'+f[1:4]+'_'+f[4:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in p_photofromvideos:
-    rename(f,('photos/photofromvideo_'+f[1:4]+'_'+f[4:]).lower())
+    dest = ('photos/photofromvideo_'+f[1:4]+'_'+f[4:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in v_videos:
     dest = f
     if (f[2:4].lower() == 'xj'):
         dest = f[:2] + '00' + f[4:]
-    rename(f,('videos/video_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
+    dest = ('videos/video_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in v_timelapses:
     dest = f
     if (f[2:4].lower() == 'tl'):
         dest = f[:2] + '00' + f[4:]
-    rename(f,('videos/timelapse_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
+    dest = ('videos/timelapse_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in v_loop:
-    rename(f,('videos/loop_'+f[4:8]+'_'+f[1:4]+f[8:]).lower())
+    dest = ('videos/loop_'+f[4:8]+'_'+f[1:4]+f[8:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in v_videoandphotos:
     dest = f
     if (f[2:4].lower() == 'xj'):
         dest = f[:2] + '00' + f[4:]
-    rename(f,('videos/videowphotos_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
+    dest = ('videos/videowphotos_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 for f in v_slowmotion:
     dest = f
     if (f[2:4].lower() == 'xj'):
         dest = f[:2] + '00' + f[4:]
-    rename(f,('videos/slowmotion_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower())
+    dest = ('videos/slowmotion_'+dest[4:8]+'_'+dest[2:4]+dest[8:]).lower()
+    rename(f,dest)
+    print("Moved '" + f +"' to '"+dest+"'")
 
 
 #remove all thms and secs
 for f in thms:
     remove(f)
+    print("Removed '" + f +"'")
 for f in secs:
     remove(f)
+    print("Removed '" + f +"'")
+
+print('\nDONE\n')
